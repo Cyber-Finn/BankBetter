@@ -29,9 +29,9 @@ function createAccount($pdo, $userId, $accountTypeId) {
 
         $pdo->beginTransaction();
 
-        //DEBUG ONLY only!
-        echo json_encode(['message' => 'Transaction started']); // Debugging
-        return;
+        //DEBUG ONLY!
+        //return ['message' => 'Transaction started']; // Debugging
+        
 
         // Ensure userId and accountTypeId are integers
         $userId = (int)$userId;
@@ -41,9 +41,8 @@ function createAccount($pdo, $userId, $accountTypeId) {
         $stmt = $pdo->prepare("INSERT INTO Accounts (user_id, account_type, balance) VALUES (:userId, :accountTypeId, 0)");
         $stmt->execute([':userId' => $userId, ':accountTypeId' => $accountTypeId]);
 
-        //DEBUG ONLY only!
-        echo json_encode(['message' => 'Account inserted']); // Debugging
-        return;
+        //DEBUG ONLY!
+        //return ['message' => 'Account inserted']; // Debugging
 
         $accountId = $pdo->lastInsertId();
 
@@ -65,9 +64,8 @@ function createAccount($pdo, $userId, $accountTypeId) {
         $stmt = $pdo->prepare($createDebitsTableSql);
         $stmt->execute();
 
-        //DEBUG ONLY only!
-        echo json_encode(['message' => 'Debits table created']); // Debugging
-        return;
+        //DEBUG ONLY!
+        //return ['message' => 'Debits table created']; // Debugging
 
         // Prepare and execute credits table creation
         $createCreditsTableSql = "CREATE TABLE {$creditTableName} (
@@ -82,13 +80,13 @@ function createAccount($pdo, $userId, $accountTypeId) {
         $stmt = $pdo->prepare($createCreditsTableSql);
         $stmt->execute();
 
-        //DEBUG ONLY only!
-        echo json_encode(['message' => 'Credits table created']); // Debugging
-        return;
+        //DEBUG ONLY!
+        //return ['message' => 'Credits table created']; // Debugging
 
         $pdo->commit();
-        echo json_encode(['message' => 'Transaction committed', 'account_id' => $accountId]);
-        return;
+
+        //DEBUG ONLY!!
+        return ['message' => 'Transaction committed', 'account_id' => $accountId];
 
         //this will never happen..
         //todo fix: 
