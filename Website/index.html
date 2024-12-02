@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankBetter</title>
+    <!-- Include jQuery via CDN --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>BankBetter</h1>
+
+    <!-- User Sign Up -->
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+        <label for="userName">User Name:</label>
+        <input type="text" id="userName" name="userName" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Account Creation -->
+    <h2>Create Account</h2>
+    <form id="accountForm">
+        <label for="accountType">Account Type:</label>
+        <select id="accountType" name="accountType" required>
+            <option value="1">Standard</option>
+            <option value="2">Realtime</option>
+        </select><br>
+        <button type="submit">Create Account</button>
+    </form>
+
+    <!-- User Login -->
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="loginUserName">User Name:</label>
+        <input type="text" id="loginUserName" name="loginUserName" required><br>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Make Payment -->
+    <h2>Make Payment</h2>
+    <form id="paymentForm">
+        <label for="fromAccountId">From Account ID:</label>
+        <input type="text" id="fromAccountId" name="fromAccountId" required><br>
+        <label for="toAccountId">To Account ID:</label>
+        <input type="text" id="toAccountId" name="toAccountId" required><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br>
+        <button type="submit">Make Payment</button>
+    </form>
+
+    <!-- View Balances -->
+    <h2>View Balances</h2>
+    <form id="balancesForm">
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" name="userId" required><br>
+        <button type="submit">View Balances</button>
+    </form>
+    <div id="balancesResult"></div>
+
+    <!-- Get Bank Statement -->
+    <h2>Get Bank Statement</h2>
+    <form id="statementForm">
+        <label for="statementUserId">User ID:</label>
+        <input type="text" id="statementUserId" name="statementUserId" required><br>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required><br>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required><br>
+        <button type="submit">Get Bank Statement</button>
+    </form>
+    <div id="statementResult"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

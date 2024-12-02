@@ -1,2 +1,4 @@
 # BankBetter
-A production-ready Mobile Banking App. Includes the PHP and Database systems required to run the end-to-end system
+A work-in-progress (WIP) production-ready Banking System, includes APIs, an Online Banking Platform and a Mobile Banking App front-end system.
+<br>
+Please don't clone this repository just yet, as the system is still in-progress and I'm resolving bugs/issues
