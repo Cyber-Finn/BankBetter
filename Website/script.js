@@ -16,6 +16,7 @@ $(document).ready(function() {
             success: callback,
             error: function(xhr, status, error) {
                 console.error('Error:', error);
+                console.error('Data message: ' + data.message);
             }
         });
     }
@@ -60,7 +61,7 @@ $(document).ready(function() {
                     if (data && data.message) {
                         alert(data.message);
                     } else {
-                        alert('Unexpected response format');
+                        alert('Unexpected response format: ' + data);
                     }
                 });
             } else {

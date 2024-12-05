@@ -11,12 +11,13 @@
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false,
     ];
-    $pdo;
-    try {
-        $pdo = new PDO($dsn, $username, $password, $options);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo json_encode(['message' => 'Connection failed: ' . $e->getMessage()]);
-        exit();
+
+    function setAutoCommit($pdo, $trueOrFalse){
+        $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, $trueOrFalse);
+    }
+
+    function CreateNewPDO(){
+        global $dsn, $username, $password;
+        return new PDO($dsn, $username, $password);
     }
 ?>

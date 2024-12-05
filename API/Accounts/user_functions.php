@@ -24,14 +24,7 @@ function createUser($pdo, $userName, $password) {
 
 function createAccount($pdo, $userId, $accountTypeId) {
     try {
-        // Disable autocommit to ensure manual transaction control
-        $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false);
-
         $pdo->beginTransaction();
-
-        //DEBUG ONLY!
-        //return ['message' => 'Transaction started']; // Debugging
-        
 
         // Ensure userId and accountTypeId are integers
         $userId = (int)$userId;
@@ -40,9 +33,6 @@ function createAccount($pdo, $userId, $accountTypeId) {
         // Insert into Accounts table
         $stmt = $pdo->prepare("INSERT INTO Accounts (user_id, account_type, balance) VALUES (:userId, :accountTypeId, 0)");
         $stmt->execute([':userId' => $userId, ':accountTypeId' => $accountTypeId]);
-
-        //DEBUG ONLY!
-        //return ['message' => 'Account inserted']; // Debugging
 
         $accountId = $pdo->lastInsertId();
 
@@ -64,9 +54,6 @@ function createAccount($pdo, $userId, $accountTypeId) {
         $stmt = $pdo->prepare($createDebitsTableSql);
         $stmt->execute();
 
-        //DEBUG ONLY!
-        //return ['message' => 'Debits table created']; // Debugging
-
         // Prepare and execute credits table creation
         $createCreditsTableSql = "CREATE TABLE {$creditTableName} (
             transaction_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -79,19 +66,9 @@ function createAccount($pdo, $userId, $accountTypeId) {
         )";
         $stmt = $pdo->prepare($createCreditsTableSql);
         $stmt->execute();
-
-        //DEBUG ONLY!
-        //return ['message' => 'Credits table created']; // Debugging
-
         $pdo->commit();
 
-        //DEBUG ONLY!!
         return ['message' => 'Transaction committed', 'account_id' => $accountId];
-
-        //this will never happen..
-        //todo fix: 
-        // Re-enable autocommit after the transaction
-        $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true);
     } catch (PDOException $e) {
         $pdo->rollBack();
         $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true);
